@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scaler, Blockie } from "dapparatus";
 import burnerloader from '../burnerloader.gif';
+import bctslogo from '../bcts_logo.jpg';
 export  default ({openScanner, network, total, dollarDisplay, ens, title, titleImage, mainStyle, balance, address, changeView, view}) => {
 
 
@@ -74,6 +75,17 @@ export  default ({openScanner, network, total, dollarDisplay, ens, title, titleI
     </div>
   )
 
+  let bottomLeft = (
+    <div style={{
+      position:"fixed",
+      left:20,
+      bottom:20,
+      zIndex:2,
+    }}>
+      <img alt="BCTS AG" src={bctslogo} style={{width:'40%'}}/>
+    </div>
+  )
+
   let opacity = 0.5
 
 
@@ -120,6 +132,7 @@ export  default ({openScanner, network, total, dollarDisplay, ens, title, titleI
       {topRight}
       {lossWarning}
       {bottomRight}
+      {bottomLeft}
     </div>
   )
 };

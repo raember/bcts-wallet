@@ -4,7 +4,6 @@ NVM_VERSION='0.35.3'
 NODE_VERSION='9.11.2'
 PY_VENV='venv'
 NODE_VENV='node-env'
-NODEENV='nodeenv'
 
 # Helper functions
 msg(){ echo -e "\033[32m ==>\033[m\033[1m $1\033[m" ;}
@@ -83,7 +82,7 @@ setup_py_venv(){
 	fi
 }
 
-check_node_env_exists(){
+ensure_nodeenv_cmd_exists(){
 	if ! command -v nodeenv &> /dev/null; then
 		msg2 "Installing node-env via pip3"
         if ! pip3 install -e "git+https://github.com/ekalinin/nodeenv.git#egg=nodeenv"; then
@@ -121,17 +120,15 @@ msg "Setting up burner wallet"
 setup_py_venv
 
 py_venv_in
-    check_node_env_exists
+    ensure_nodeenv_cmd_exists
     setup_node_env
 py_venv_out
-
-msg2 "Change address in clevis.json"
-sed -i 's|http://localhost|https://rpc.bluchain.pro|g' clevis.json
 
 msg "Installing packages and setting up server"
 node_venv_in
     msg2 "Installing npm packages"
     npm i
+    npm i scrypt
     msg2 "Initializing clevis"
     npx clevis init
 node_venv_out

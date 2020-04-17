@@ -93,9 +93,9 @@ let mainStyle = {
   height:"100%",
   backgroundImage:"linear-gradient(#292929, #191919)",
   backgroundColor:"#191919",
-  hotColor:"#F69E4D",
-  mainColorAlt:"#fa7d36",
-  mainColor:"#F76B1C",
+  hotColor:"#4dbbf6",
+  mainColorAlt:"#368efa",
+  mainColor:"#1c7ff7",
 }
 
 let title = i18n.t('app_name')
@@ -349,16 +349,16 @@ class App extends Component {
     incogDetect(async (result)=>{
       if(result){
         console.log("INCOG")
-        document.getElementById("main").style.backgroundImage = "linear-gradient(#862727, #671c1c)"
-        document.body.style.backgroundColor = "#671c1c"
+        document.getElementById("main").style.backgroundImage = "linear-gradient(#273787, #1b3966)"
+        document.body.style.backgroundColor = "#1b3566"
         var contextElement = document.getElementById("context")
         contextElement.innerHTML = 'INCOGNITO';
       }else if (typeof web3 !== 'undefined') {
         console.log("NOT INCOG",this.state.metaAccount)
         try{
           if (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isMetaMask === true && window.web3.eth && typeof window.web3.eth.getAccounts == "function" && isArrayAndHasEntries(await window.web3.eth.getAccounts()))  {
-            document.getElementById("main").style.backgroundImage = "linear-gradient(#553319, #ca6e28)"
-            document.body.style.backgroundColor = "#ca6e28"
+            document.getElementById("main").style.backgroundImage = "linear-gradient(#182b54, #3574fc)"
+            document.body.style.backgroundColor = "#3574fc"
             var contextElement = document.getElementById("context")
             contextElement.innerHTML = 'METAMASK';
           } else if(this.state.account && !this.state.metaAccount) {
